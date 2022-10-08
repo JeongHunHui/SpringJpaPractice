@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Getter
 @Setter
@@ -27,7 +29,7 @@ public class Category {
   private List<Item> items = new ArrayList<>();
 
   // 이름만 같지만 다른 엔티티랑 매핑하는 것 처럼 하면 됨
-  @ManyToOne
+  @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "parent_id")
   private Category parent;
 
