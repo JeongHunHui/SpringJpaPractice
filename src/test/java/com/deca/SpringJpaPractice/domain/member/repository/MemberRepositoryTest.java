@@ -13,19 +13,18 @@ import javax.transaction.Transactional;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MemberRepositoryTest {
-    @Autowired
-    MemberRepository memberRepository;
-    @Test
-    @Transactional
-    @Rollback(false)
-    public void testMember() {
-        Member member = new Member();
-        member.setUsername("memberA");
-        Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
-        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
+  @Autowired MemberRepository memberRepository;
 
-        Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
-        Assertions.assertThat(findMember).isEqualTo(member); //JPA 엔티티 동일성 보장
-    }
+  @Test
+  @Transactional
+  @Rollback(false)
+  public void testMember() {
+    Member member = new Member();
+    member.setName("memberA");
+    Long savedId = memberRepository.save(member);
+    Member findMember = memberRepository.find(savedId);
+    Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
+    Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
+    Assertions.assertThat(findMember).isEqualTo(member); // JPA 엔티티 동일성 보장
+  }
 }

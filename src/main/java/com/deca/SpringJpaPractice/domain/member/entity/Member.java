@@ -1,24 +1,30 @@
 package com.deca.SpringJpaPractice.domain.member.entity;
 
+import com.deca.SpringJpaPractice.domain.address.entity.Address;
+
+import com.deca.SpringJpaPractice.domain.order.entity.Order;
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 public class Member {
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String username;
+  @Id
+  @Column(name = "member_id")
+  @GeneratedValue
+  private Long id;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  private String name;
 
-    public Long getId() {
-        return id;
-    }
+  // Jpa 내장타입
+  @Embedded private Address address;
+
+  // mappedBy = "member" -> Order 테이블의 member와 매핑 됐다는 뜻
+  @OneToMany(mappedBy = "member")
+  private List<Order> orders = new ArrayList<>();
 }
