@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-// 상속관계 전략 -> 싱글테이블 전략
+// 상속관계 전략
 // Table Per Class 상속받는 객체마다 테이블 생성
 // Joined 정규화된?
-// Single Table 한 테이블에 다 넣기
+// Single Table 한 테이블에 다 넣기 -> 아래 에선 이걸 사용
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 // book이면 어케할거냐? album이면 어케할거냐?
 @DiscriminatorColumn(name = "dtype")
@@ -31,3 +31,6 @@ public abstract class Item {
   @ManyToMany(mappedBy = "items")
   private List<Category> categories = new ArrayList<>();
 }
+
+// -> Item 테이블에 Item을 상속받은 엔티티의 필드들이 전부 들어감
+// ex) Item을 상속받은 book의 author, isbn 이 Item 테이블의 컬럼에 포함되어있음

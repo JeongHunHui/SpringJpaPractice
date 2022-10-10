@@ -1,11 +1,9 @@
 package com.deca.SpringJpaPractice.domain.member.entity;
 
 import com.deca.SpringJpaPractice.domain.address.entity.Address;
-
 import com.deca.SpringJpaPractice.domain.order.entity.Order;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
