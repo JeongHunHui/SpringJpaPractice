@@ -1,6 +1,7 @@
 package com.deca.SpringJpaPractice.domain.item.entity;
 
 import com.deca.SpringJpaPractice.domain.category.entity.Category;
+import com.deca.SpringJpaPractice.domain.item.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,6 +31,21 @@ public abstract class Item {
 
   @ManyToMany(mappedBy = "items")
   private List<Category> categories = new ArrayList<>();
+
+  // == 비즈니스 로직 == //
+  // 엔티티가 주도적으로 해결할 수 있는 경우는 엔티티 안에 비즈니스 로직 넣는게 좋음
+  /** stock 증가 */
+  public void addStock(int quantity) {
+    this.stockQuantity = quantity;
+  }
+  /** stock 감소 */
+  public void removeStock(int quantity) {
+    int restStock = this.stockQuantity - quantity;
+    if (restStock < 0) {
+      throw new NotEnoughStockException("need more stock");
+    }
+    this.stockQuantity = restStock;
+  }
 }
 
 // -> Item 테이블에 Item을 상속받은 엔티티의 필드들이 전부 들어감
