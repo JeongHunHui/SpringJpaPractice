@@ -4,7 +4,9 @@ import com.deca.SpringJpaPractice.domain.delivery.entity.Delivery;
 import com.deca.SpringJpaPractice.domain.delivery.entity.DeliveryStatus;
 import com.deca.SpringJpaPractice.domain.member.entity.Member;
 import com.deca.SpringJpaPractice.domain.orderItem.entity.OrderItem;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,6 +20,7 @@ import static javax.persistence.FetchType.*;
 @Table(name = "orders")
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
   @Id
   @GeneratedValue

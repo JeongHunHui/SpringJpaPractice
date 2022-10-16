@@ -2,7 +2,9 @@ package com.deca.SpringJpaPractice.domain.orderItem.entity;
 
 import com.deca.SpringJpaPractice.domain.item.entity.Item;
 import com.deca.SpringJpaPractice.domain.order.entity.Order;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import static javax.persistence.FetchType.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
   @Id
   @GeneratedValue
