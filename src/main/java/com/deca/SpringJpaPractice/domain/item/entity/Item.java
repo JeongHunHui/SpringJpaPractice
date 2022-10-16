@@ -36,7 +36,7 @@ public abstract class Item {
   // 엔티티가 주도적으로 해결할 수 있는 경우는 엔티티 안에 비즈니스 로직 넣는게 좋음
   /** stock 증가 */
   public void addStock(int quantity) {
-    this.stockQuantity = quantity;
+    this.stockQuantity += quantity;
   }
   /** stock 감소 */
   public void removeStock(int quantity) {
